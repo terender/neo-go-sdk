@@ -4,9 +4,9 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"github.com/terender/neo-go-sdk/neotransaction"
 	"github.com/terender/neo-go-sdk/neoutils"
+	"io/ioutil"
 	"net/http"
 	"reflect"
 	"strconv"
@@ -117,7 +117,7 @@ func Invoke(url string, scriptHashString string, params []interface{}) ([]Argume
 	gas := int64(0)
 
 	gasconsumed, ok := result[`gas_consumed`].(string)
-	if !ok {
+	if ok {
 		v, err := strconv.ParseFloat(gasconsumed, 10)
 		if err == nil {
 			gas = int64(v * float64(neotransaction.TxOutputValueBase))
@@ -185,7 +185,7 @@ func InvokeScript(url string, script []byte) ([]Argument, int64, error) {
 	gas := int64(0)
 
 	gasconsumed, ok := result[`gas_consumed`].(string)
-	if !ok {
+	if ok {
 		v, err := strconv.ParseFloat(gasconsumed, 10)
 		if err == nil {
 			gas = int64(v * float64(neotransaction.TxOutputValueBase))
