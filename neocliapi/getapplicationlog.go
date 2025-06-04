@@ -3,8 +3,8 @@ package neocliapi
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"github.com/terender/neo-go-sdk/neotransaction"
+	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -56,7 +56,7 @@ func GetApplicationLog(url string, txid string) ([]Argument, int64, error) {
 	gas := int64(0)
 
 	gasconsumed, ok := result[`gas_consumed`].(string)
-	if !ok {
+	if ok {
 		v, err := strconv.ParseFloat(gasconsumed, 10)
 		if err == nil {
 			gas = int64(v * float64(neotransaction.TxOutputValueBase))

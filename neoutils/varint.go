@@ -78,7 +78,7 @@ func ParseVarInt(bytes []byte) (VarInt, error) {
 	}
 
 	if len(bytes) < 9 {
-		return ret, errors.New(fmt.Sprint("ParseVarInt: input bytes starts with 0xfe but length", len(bytes)))
+		return ret, errors.New(fmt.Sprint("ParseVarInt: input bytes starts with 0xff but length", len(bytes)))
 	}
 	ret.Value = binary.LittleEndian.Uint64(bytes[1:])
 	return ret, nil
